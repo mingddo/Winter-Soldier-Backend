@@ -19,3 +19,5 @@ def signup(request):
         user.set_password(request.data.get('password'))
         user.save()
     return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
