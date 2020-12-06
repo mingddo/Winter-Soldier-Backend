@@ -4,7 +4,6 @@ from django.conf import settings
 class Todo(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    content = models.TextField()
     schedule_year = models.IntegerField
     schedule_month = models.IntegerField()
     schedule_date = models.IntegerField()

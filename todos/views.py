@@ -8,15 +8,16 @@ from .serializers import TodoSerializer
 
 @api_view(['GET','POST'])
 def todo_list_create(request):
-    if request.method == 'GET':
-        todos = Todo.objects.all()
-        serializer = TodoSerializer(todos, many=True)
-        return Response(serializer.data)
-    else:
-        serializer = TodoSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            todos = Todo.objects.all()
+            serializer = TodoSerializer(todos, many=True)
             return Response(serializer.data)
+        else:
+            serializer = TodoSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data)
 
 @api_view(['PUT', 'DELETE'])
 def todo_update_delete(request, todo_pk):
