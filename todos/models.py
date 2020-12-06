@@ -5,5 +5,14 @@ class Todo(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     content = models.TextField()
-    schedule_at = models.DateTimeField()
-    alarm_at = models.DateTimeField()
+    schedule_year = models.IntegerField
+    schedule_month = models.IntegerField()
+    schedule_date = models.IntegerField()
+    schedule_hour = models.IntegerField()
+    schedule_min = models.IntegerField()
+    alarm_year = models.IntegerField()
+    alarm_month = models.IntegerField()
+    alarm_date = models.IntegerField()
+    alarm_hour = models.IntegerField()
+    alarm_min = models.IntegerField()
+    

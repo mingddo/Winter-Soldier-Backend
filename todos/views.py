@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -17,3 +17,18 @@ def todo_list_create(request):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+
+@api_view(['PUT', 'DELETE'])
+def todo_update_delete(request, todo_pk):
+    todo = get_object_or_404(Todo, pk=todo_pk)
+    if request.user == todo.user:
+        if request.method == 'PUT':
+            serializer = TodoSerializer(todo, request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data)
+        else:
+            todo.delete()
+            return Response(status=status.HTTP_200)
+
+        
