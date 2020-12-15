@@ -149,3 +149,6 @@ STATIC_URL = '/static/'
 
 # custom user 등록
 AUTH_USER_MODEL = 'accounts.User'
+
+ALLOWED_HOSTS = ['*']
+CORS_ALLOW_ALL_ORIGINS = True
