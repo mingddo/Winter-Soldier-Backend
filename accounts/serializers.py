@@ -8,7 +8,13 @@ class UserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = ('username', 'password', )
 
-class UserList(serializers.ModelSerializer):
+class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ('username',)
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        depth = 1
+        fields = ('username', 'my_todo')
