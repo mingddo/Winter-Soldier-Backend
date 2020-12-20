@@ -1,0 +1,47 @@
+{"intents": [
+    {"tag": "unknown",
+    "patterns": ["어쩌구 저쩌구"," 제발좀...", "개멍청한 로봇놈"],
+    "responses": ["잘 이해하지 못했습니다.", "다시 한번 입력해주세요.", "저는 멍청해서 영어만 읽을 수 있어요"]
+    },
+    {"tag": "greeting",
+     "patterns": ["Hi", "Hey", "Is anyone there?", "Hello", "Hay", "안녕"],
+     "responses": ["안녕하세요", "반가워요", "안녕하신가요"]
+    },
+    {"tag": "goodbye",
+     "patterns": ["Bye", "See you later", "Goodbye"],
+     "responses": ["다음에 봐요", "좋은 하루 되세요", "다음에 또 만나요!", "안녕히 가세요!"]
+    },
+    {"tag": "about",
+    "patterns": ["Who are you?", "What are you?", "Who you are?" ],
+    "responses": ["안녕하세요 저는 개멍청해서 영어만 알아듣는 바봇(bot)이에요", "저는 바봇(bot) 챗봇이랍니다", "저는 챗봇 바봇(bot) 이에요. 사이트 이용에 도움을 드릴게요."]
+    },
+    {"tag": "thanks",
+     "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks for the help"],
+     "responses": ["감사합니다.", "도움이 돼서 기쁘네요", "저도 마찬가지에요", "천만에요"]
+    },
+    {"tag": "name",
+    "patterns": ["what is your name", "what should I call you", "whats your name?"],
+    "responses": ["바봇(bot)이라고 불러주세요", "저는 바봇(bot)이에요", "그냥 바봇(bot)이라고 부르시면 돼요"]
+    },
+    {"tag": "help",
+    "patterns": ["Could you help me?", "give me a hand please", "Can you help?", "What can you do for me?", "I need a support", "I need a help", "support me please"],
+    "responses": ["무엇을 도와드릴까요?", "어떤 어려움이 있으신가요?", "안내를 원하시나요?"]
+    },
+    {"tag": "createaccount",
+    "patterns": ["I need to create a new account", "how to open a new account", "I want to create an account", "can you create an account for me", "how to open a new account"],
+    "responses": ["상단에서 회원가입 버튼을 눌러 가입할 수 있습니다.", "상단에 있는 회원가입 버튼을 눌러보세요."]
+    },
+    {"tag": "complaint",
+    "patterns": ["have a complaint", "I want to raise a complaint", "there is a complaint about a service"],
+    "responses": ["어떤 점이 불편하신가요?", "불만사항을 말씀해주세요."]
+    },
+    {"tag": "todo",
+    "patterns": ["how to use todolist", "I want to add todolist", "todolist"],
+    "responses": ["달력에 해당 날짜를 클릭수 todo를 추가해보세요.", "달력에서 날짜를 누르면 todo 입력창이 나타납니다."]
+    },
+    {"tag": "introduce",
+    "patterns": ["what is this site?", "I want to raise a complaint", "there is a complaint about a service"],
+    "responses": ["저희는 사용자가 추가한 일정에 맞춰 직접 알림을 보내는 알림 앱(App) 사이트입니다.", "사용자가 취향에 맞춰 일정을 꾸미면 알림을 보내는 알림 앱(App) 사이트입니다."]
+    }
+]
+}
