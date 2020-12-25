@@ -12,7 +12,6 @@ import pandas as pd
 def stocks(request, companyname):
     stock_code = pd.read_html('http://kind.krx.co.kr/corpgeneral/corpList.do?method=download', header=0)[0] 
     #stock_code.head()
-    print(companyname)
     # 데이터에서 정렬이 따로 필요하지는 않지만 테스트겸 Pandas sort_values를 이용하여 정렬을 시도해봅니다.
     stock_code.sort_values(['상장일'], ascending=True)
 
@@ -32,7 +31,7 @@ def stocks(request, companyname):
 
     
     df = pd.DataFrame()
-    for page in range(1, 5):
+    for page in range(1, 4):
         url = 'http://finance.naver.com/item/sise_day.nhn?code={code}'.format(
             code=code)
         url = '{url}&page={page}'.format(url=url, page=page)
@@ -55,6 +54,7 @@ def stocks(request, companyname):
     df = df.sort_values(by=['date'])
     df['date'] = df['date'].dt.strftime('%m/%d')
 
+    df_date = df['date'].tolist()
     df_price = df['close'].tolist()
     df_open = df['open'].tolist()
     df_high = df['high'].tolist()
@@ -63,6 +63,6 @@ def stocks(request, companyname):
     df_volume = df['volume'].tolist()
     context = []
     for i in range(len(df['date'].tolist())):
-        context.append([df_open[i], df_high[i], df_low[i], df_price[i]])
-    print([df_date, context, df_volume])
-    return Response([df_date, context, df_volume])
+        context.append([df_date[i], df_volume[i], df_open[i], df_high[i], df_low[i], df_price[i]])
+    print(context)
+    return Response(context)
