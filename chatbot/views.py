@@ -2,16 +2,6 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-
-
-
-from django.views.decorators.csrf import csrf_exempt
-
-
-
-from django.http import JsonResponse, HttpResponse
-
-
 import json 
 import numpy as np 
 import tensorflow as tf
@@ -22,6 +12,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sklearn.preprocessing import LabelEncoder
 
+from googletrans import Translator
 
 # Create your views here.
 @api_view(['GET'])
@@ -98,8 +89,11 @@ def chattrain(request):
 
 @api_view(['GET'])
 def chatanswer(request, question):
+    trans = Translator()
+    result = trans.translate(question, dest='en')
+
     context = {}
-    inp = question
+    inp = result.text
 
 
     import colorama 
@@ -112,7 +106,7 @@ def chatanswer(request, question):
     data = json.load(file)
 
 
-        # load trained model
+    # load trained model
     model = keras.models.load_model('static/chat_model')
 
     # load tokenizer object
@@ -135,6 +129,7 @@ def chatanswer(request, question):
         if i['tag'] == tag:
             txt1 = np.random.choice(i['responses'])
             print(Fore.GREEN + "ChatBot:" + Style.RESET_ALL , txt1)
+    context["tag"] = tag
     context["anstext"] = txt1
     # return JsonResponse(context, content_type="application/json")
     return Response(context)
