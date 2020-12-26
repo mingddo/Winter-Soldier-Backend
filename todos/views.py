@@ -30,14 +30,15 @@ def todo_list_create(request):
 @permission_classes([IsAuthenticated])
 def todo_update_delete(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk)
+    print(request.user.id, todo.user)
     if request.user == todo.user:
         if request.method == 'PUT':
-            serializer = TodoSerializer(todo, request.data)
+            serializer = TodoSerializer(todo, data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
                 return Response(serializer.data)
         else:
             todo.delete()
-            return Response(status=status.HTTP_200)
-
-        
+            return Response({ '삭제된 todo_id': todo_pk})
+    else:
+        return Response({'detail': '권한이 없습니다.'})
