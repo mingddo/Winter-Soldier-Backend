@@ -29,7 +29,11 @@
     },
     {"tag": "createaccount",
     "patterns": ["I need to create a new account", "how to open a new account", "I want to create an account", "can you create an account for me", "how to open a new account"],
-    "responses": ["상단에서 회원가입 버튼을 눌러 가입할 수 있습니다.", "상단에 있는 회원가입 버튼을 눌러보세요."]
+    "responses": ["회원가입 페이지로 이동"]
+    },
+    {"tag": "login",
+    "patterns": ["I want to login", "where is login?", "login", "go to login", "set login", "how to login"],
+    "responses": ["로그인 페이지로 이동"]
     },
     {"tag": "complaint",
     "patterns": ["have a complaint", "I want to raise a complaint", "there is a complaint about a service"],
