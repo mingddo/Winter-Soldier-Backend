@@ -153,6 +153,11 @@ AUTH_USER_MODEL = 'accounts.User'
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
 
+import datetime
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+}
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR), 'static'
 ]
