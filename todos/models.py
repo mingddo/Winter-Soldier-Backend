@@ -14,6 +14,7 @@ class Todo(models.Model):
     alarm_date = models.IntegerField()
     alarm_hour = models.IntegerField()
     alarm_min = models.IntegerField()
+    completed = models.CharField(max_length=10, default="no")
 
     def __str__(self):
         return self.title
