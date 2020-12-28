@@ -1,10 +1,16 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import UserSerializer, UserListSerializer, ProfileSerializer
+from .serializers import UserSerializer, UserListSerializer, ProfileSerializer, UserFollowerSerailizer
 from .models import User
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
+
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 
 # Create your views here.
 @api_view(['POST'])
@@ -38,3 +44,21 @@ def get_profile(request, username):
     serializer = ProfileSerializer(user)
     return Response(serializer.data)
     
+
+@api_view(['POST', 'DELETE'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def follow(request, username):
+    me = request.user
+    person = get_object_or_404(get_user_model(), username=username)
+    if me != person:
+        if request.method == 'POST':
+            follow = person.followers.add(me)
+            serializer = UserFollowerSerailizer(follow, many=True)
+            return Response({'username' : person.username})
+        else:
+            follow_cancel = person.followers.remove(me)
+            serializer = UserFollowerSerailizer(follow_cancel, many=True)
+            return Response({'username' : person.username})
+    else:
+        return Response({'error':'본인은 팔로우할 수 없습니다.'})
