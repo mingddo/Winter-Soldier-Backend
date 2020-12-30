@@ -39,6 +39,15 @@ def get_userlist(request):
      
 
 @api_view(['GET'])
+def find_userlist(request, keyword):
+    user = get_user_model()
+    users = user.objects.all()
+    value = user.objects.filter(username__startswith=keyword)
+    seriailizer = UserListSerializer(value, many=True)
+    return Response(seriailizer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
 def get_profile(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     serializer = ProfileSerializer(user)
@@ -55,10 +64,10 @@ def follow(request, username):
         if request.method == 'POST':
             follow = person.followers.add(me)
             serializer = UserFollowerSerailizer(follow, many=True)
-            return Response({'username' : person.username})
+            return Response({'username' : person.username}, status=status.HTTP_200_OK)
         else:
             follow_cancel = person.followers.remove(me)
             serializer = UserFollowerSerailizer(follow_cancel, many=True)
-            return Response({'username' : person.username})
+            return Response({'username' : person.username}, status=status.HTTP_200_OK)
     else:
         return Response({'error':'본인은 팔로우할 수 없습니다.'})
