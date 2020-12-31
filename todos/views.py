@@ -15,8 +15,7 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 @permission_classes([IsAuthenticated])
 def todo_list_create(request):
     if request.method == 'GET':
-        todos = Todo.objects.all()
-        serializer = TodoSerializer(todos, many=True)
+        serializer = TodoSerializer(request.user.my_todo, many=True)
         return Response(serializer.data)
     else:
         serializer = TodoSerializer(data=request.data)
