@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),
-    path('todos/', include('todos.urls')),
-    path('chatbot/', include('chatbot.urls')),
-    path('stocks/', include('stocks.urls')),
+    path("admin/", admin.site.urls),
+    path("accounts/", include("accounts.urls")),
+    path("todos/", include("todos.urls")),
+    path("chatbot/", include("chatbot.urls")),
+    path("stocks/", include("stocks.urls")),
+    path("corona/", include("corona.urls")),
 ]

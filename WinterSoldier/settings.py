@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-icu$#*@s@=bqox4joj5v+v_5zw%4(&ro97u2m(v5o%_f47y0o'
+SECRET_KEY = "-icu$#*@s@=bqox4joj5v+v_5zw%4(&ro97u2m(v5o%_f47y0o"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,67 +32,65 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # appname
-    'accounts',
-    'drugs',
-    'movies',
-    'stocks',
-    'todos',
-    'chatbot',
+    "accounts",
+    "drugs",
+    "movies",
+    "stocks",
+    "todos",
+    "chatbot",
+    "corona",
     # restframework
-    'rest_framework',
-    
+    "rest_framework",
     # cors
-    'corsheaders',
-
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "corsheaders",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 ]
 
 MIDDLEWARE = [
     # cors middleware 추가
-    'corsheaders.middleware.CorsMiddleware',
-    
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'WinterSoldier.urls'
+ROOT_URLCONF = "WinterSoldier.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'WinterSoldier.wsgi.application'
+WSGI_APPLICATION = "WinterSoldier.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -102,16 +100,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -119,9 +117,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -133,7 +131,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
 # django rest_framework JWT
 # REST_FRAMEWORK = {
@@ -148,18 +146,17 @@ STATIC_URL = '/static/'
 # }
 
 # custom user 등록
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = "accounts.User"
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
 
 import datetime
+
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    "JWT_EXPIRATION_DELTA": datetime.timedelta(days=1),
 }
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR), 'static'
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR), "static"]
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
