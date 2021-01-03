@@ -1,7 +1,6 @@
 absl-py==0.11.0
 appdirs==1.4.4
 asgiref==3.3.1
-astor==0.8.1
 astunparse==1.6.3
 black==20.8b1
 cachetools==4.2.0
@@ -13,7 +12,7 @@ Django==3.1.4
 django-cors-headers==3.5.0
 djangorestframework==3.12.2
 djangorestframework-jwt==1.11.0
-gast==0.2.2
+gast==0.3.3
 google-auth==1.24.0
 google-auth-oauthlib==0.4.2
 google-pasta==0.2.0
@@ -30,7 +29,6 @@ hyperframe==5.2.0
 idna==2.10
 importlib-metadata==3.3.0
 joblib==1.0.0
-Keras-Applications==1.0.8
 Keras-Preprocessing==1.1.2
 lxml==4.6.2
 Markdown==3.3.3
@@ -57,10 +55,10 @@ scipy==1.5.4
 six==1.15.0
 sniffio==1.2.0
 sqlparse==0.4.1
-tensorboard==2.0.2
+tensorboard==2.4.0
 tensorboard-plugin-wit==1.7.0
-tensorflow==2.0.0
-tensorflow-estimator==2.0.1
+tensorflow==2.3.1
+tensorflow-estimator==2.3.0
 termcolor==1.1.0
 threadpoolctl==2.1.0
 toml==0.10.2
