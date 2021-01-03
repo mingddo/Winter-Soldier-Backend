@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "todos",
     "chatbot",
     "corona",
+    "weather",
     # restframework
     "rest_framework",
     # cors
