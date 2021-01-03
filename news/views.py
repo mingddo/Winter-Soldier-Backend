@@ -1,6 +1,5 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.http import JsonResponse
 from bs4 import BeautifulSoup
 from datetime import datetime
 import requests
@@ -48,12 +47,15 @@ def crawler(request, query):
         contents_text.append(contents_list.text)
 
     # 모든 리스트 딕셔너리형태로 저장
-    result = {
-        "date": date_text,
-        "title": title_text,
-        "source": source_text,
-        "contents": contents_text,
-        "link": link_text,
-    }
+    temp = []
+    for i in range(10):
+        result = {
+            "date": date_text[i],
+            "title": title_text[i],
+            "source": source_text[i],
+            "contents": contents_text[i],
+            "link": link_text[i],
+        }
+        temp.append(result)
     # page += 10
-    return JsonResponse(result)
+    return Response(temp)
