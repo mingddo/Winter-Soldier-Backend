@@ -24,12 +24,12 @@ def getInfo(request):
     rescode = response.getcode()
     if rescode == 200:
         response_body = response.read()
-        print(response_body.decode("utf-8"))
+        # print(response_body.decode("utf-8"))
         dict = json.loads(response_body.decode("utf-8"))
-        pprint(dict)
+        # pprint(dict)
         return Response(dict)
     else:
-        print("Error Code:" + rescode)
+        # print("Error Code:" + rescode)
         return Response({"err": "Error Code:" + rescode})
 
 
@@ -42,10 +42,10 @@ def getcityInfo(request):
     rescode = response.getcode()
     if rescode == 200:
         response_body = response.read()
-        print(response_body.decode("utf-8"))
+        # print(response_body.decode("utf-8"))
         dict = json.loads(response_body.decode("utf-8"))
-        pprint(dict)
+        # pprint(dict)
         return Response(dict)
     else:
-        print("Error Code:" + rescode)
+        # print("Error Code:" + rescode)
         return Response({"err": "Error Code:" + rescode})
