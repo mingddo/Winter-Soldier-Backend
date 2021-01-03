@@ -1,43 +1,31 @@
 {"intents": [
-    {"tag": "unknown",
-    "patterns": ["어쩌구 저쩌구"," 제발좀...", "개멍청한 로봇놈"],
-    "responses": ["잘 이해하지 못했습니다.", "다시 한번 입력해주세요.", "저는 멍청해서 영어만 읽을 수 있어요"]
-    },
     {"tag": "greeting",
      "patterns": ["Hi", "Hey", "Is anyone there?", "Hello", "Hay", "안녕"],
-     "responses": ["안녕하세요", "반가워요", "안녕하신가요"]
+     "responses": ["안녕하세요", "반가워요"]
     },
     {"tag": "goodbye",
      "patterns": ["Bye", "See you later", "Goodbye"],
-     "responses": ["다음에 봐요", "좋은 하루 되세요", "다음에 또 만나요!", "안녕히 가세요!"]
+     "responses": ["다음에 봐요", "다음에 또 만나요!"]
     },
-    {"tag": "about",
-    "patterns": ["Who are you?", "What are you?", "Who you are?" ],
-    "responses": ["안녕하세요 저는 개멍청해서 영어만 알아듣는 바봇(bot)이에요", "저는 바봇(bot) 챗봇이랍니다", "저는 챗봇 바봇(bot) 이에요. 사이트 이용에 도움을 드릴게요."]
+    {"tag": "namet",
+    "patterns": ["Who are you?", "What are you?", "Who you are?", "what is your name", "what should I call you", "whats your name?"],
+    "responses": ["안녕하세요 저는 바봇(bot)이에요", "저는 챗봇 바봇(bot) 이에요. 사이트 이용에 도움을 드릴게요."]
     },
     {"tag": "thanks",
      "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks for the help"],
      "responses": ["감사합니다.", "도움이 돼서 기쁘네요", "저도 마찬가지에요", "천만에요"]
     },
-    {"tag": "name",
-    "patterns": ["what is your name", "what should I call you", "whats your name?"],
-    "responses": ["바봇(bot)이라고 불러주세요", "저는 바봇(bot)이에요", "그냥 바봇(bot)이라고 부르시면 돼요"]
-    },
     {"tag": "help",
-    "patterns": ["Could you help me?", "give me a hand please", "Can you help?", "What can you do for me?", "I need a support", "I need a help", "support me please"],
+    "patterns": ["Could you help me?", "give me a hand please", "Can you help?", "What can you do for me?", "I need a support", "I need a help", "support me please", "help"],
     "responses": ["무엇을 도와드릴까요?", "어떤 어려움이 있으신가요?", "안내를 원하시나요?"]
     },
     {"tag": "createaccount",
-    "patterns": ["I need to create a new account", "how to open a new account", "I want to create an account", "can you create an account for me", "how to open a new account"],
+    "patterns": ["I need to create a new account", "how to open a new account", "I want to create an account", "can you create an account for me", "how to open a new account", "Sign Up", "account"],
     "responses": ["회원가입 페이지로 이동"]
     },
     {"tag": "login",
     "patterns": ["I want to login", "where is login?", "login", "go to login", "set login", "how to login"],
     "responses": ["로그인 페이지로 이동"]
-    },
-    {"tag": "complaint",
-    "patterns": ["have a complaint", "I want to raise a complaint", "there is a complaint about a service"],
-    "responses": ["어떤 점이 불편하신가요?", "불만사항을 말씀해주세요."]
     },
     {"tag": "todo",
     "patterns": ["how to use todolist", "I want to add todolist", "todolist"],
