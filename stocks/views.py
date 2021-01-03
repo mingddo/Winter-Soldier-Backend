@@ -9,23 +9,25 @@ import pandas as pd
 
 
 @api_view(["GET"])
-def stocks(request, companyname):
-    stock_code = pd.read_html(
-        "http://kind.krx.co.kr/corpgeneral/corpList.do?method=download", header=0
-    )[0]
+def stocks(request, companycode, period):
+    # stock_code = pd.read_html(
+    #     "http://kind.krx.co.kr/corpgeneral/corpList.do?method=download", header=0
+    # )[0]
 
-    stock_code.sort_values(["상장일"], ascending=True)
-    stock_code = stock_code[["회사명", "종목코드"]]
-    stock_code = stock_code.rename(columns={"회사명": "company", "종목코드": "code"})
-    # 종목코드가 6자리이기 때문에 6자리를 맞춰주기 위해 설정해줌
-    stock_code.code = stock_code.code.map("{:06d}".format)
-    company = companyname
-    code = stock_code[stock_code.company == company].code.values[0]  ## strip() : 공백제거
-    print(code)
+    # stock_code.sort_values(["상장일"], ascending=True)
+    # stock_code = stock_code[["회사명", "종목코드"]]
+    # stock_code = stock_code.rename(columns={"회사명": "company", "종목코드": "code"})
+    # # 종목코드가 6자리이기 때문에 6자리를 맞춰주기 위해 설정해줌
+    # stock_code.code = stock_code.code.map("{:06d}".format)
+    # company = companyname
+    # code = stock_code[stock_code.company == company].code.values[0]  ## strip() : 공백제거
+    # print(code)
 
     df = pd.DataFrame()
-    for page in range(1, 10):
-        url = "http://finance.naver.com/item/sise_day.nhn?code={code}".format(code=code)
+    for page in range(1, period):
+        url = "http://finance.naver.com/item/sise_day.nhn?code={companycode}".format(
+            companycode=companycode
+        )
         url = "{url}&page={page}".format(url=url, page=page)
         print(url)
         # print(pd.read_html(url, header=0)[0])
@@ -65,8 +67,4 @@ def stocks(request, companyname):
         "price": df_price,
         "volume": df_volume,
     }
-    # context = []
-    # for i in range(len(df['date'].tolist())):
-    #     context.append([df_date[i], df_volume[i], df_open[i], df_high[i], df_low[i], df_price[i]])
-    # print(context)
     return Response(context)
