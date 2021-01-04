@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "corona",
     "weather",
     "news",
+    "group",
     # restframework
     "rest_framework",
     # cors
