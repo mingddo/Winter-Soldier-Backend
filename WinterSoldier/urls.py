@@ -25,4 +25,5 @@ urlpatterns = [
     path("corona/", include("corona.urls")),
     path("weather/", include("weather.urls")),
     path("news/", include("news.urls")),
+    path("group/", include("group.urls")),
 ]
