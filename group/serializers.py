@@ -5,9 +5,9 @@ from .models import Group, GroupTodo
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = ('user', 'master', 'group_todo', 'inviting', 'name', 'introduce')
+        fields = ('id', 'user', 'master', 'group_todo', 'inviting', 'name', 'introduce')
         depth = 1
-        read_only_fields = ('user', 'master', 'inviting', 'group_todo')
+        read_only_fields = ('id', 'user', 'master', 'inviting', 'group_todo')
 
 
 class GroupTodoSerializer(serializers.ModelSerializer):
