@@ -129,6 +129,7 @@ def group_todo_list(request, group_pk):
             t_dict = {}
             t_dict["id"] = t.id
             t_dict["title"] = t.title
+            t_dict["content"] = t.content
             t_dict["schedule_year"] = t.schedule_year
             t_dict["schedule_month"] = t.schedule_month
             t_dict["schedule_date"] = t.schedule_date
@@ -137,7 +138,11 @@ def group_todo_list(request, group_pk):
             t_dict["group_id"] = t.group_id
             t_dict["user_id"] = t.user_id
 
-            date = str(t.schedule_year) + str(t.schedule_month) + str(t.schedule_date)
+            if len(t.schedule_month) < 2:
+                string_month = "0" + str(str(t.schedule_month))
+            if len(t.schedule_date) < 2:
+                string_date = "0" + str(str(t.schedule_date))
+            date = str(t.schedule_year) + string_month + string_date
             if date in todolist:
 
                 todolist[date].append(t_dict)
