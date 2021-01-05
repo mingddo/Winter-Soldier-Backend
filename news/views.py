@@ -24,33 +24,16 @@ def crawler(request, query):
 
     # 뷰티풀소프의 인자값 지정
     soup = BeautifulSoup(html, "html.parser")
-    # <a>태그에서 제목과 링크주소 추출
-    # print(soup)
-    atags = soup.select(".news_tit")
-    # print(atags)
-    for atag in atags:
-        # print(atag)
-        title_text.append(atag.text)  # 제목
-        link_text.append(atag["href"])  # 링크주소
-
-    # 신문사 추출
-    source_lists = soup.select(".info_group")
-    for source_list in source_lists:
-        source_text.append(source_list.select(".press")[0].text)
-
-    # 작성시간 추출
-    for source_list in source_lists:
-        date_text.append(source_list.select("span")[1].text)
-
-    # # 본문요약본
-    contents_lists = soup.select(".dsc_txt_wrap")
-    for contents_list in contents_lists:
-        contents_text.append(contents_list.text)
-
-    # # 이미지 선택
 
     news_lists = soup.select("li.bx")
-    for t in news_lists:
+    for (idx, t) in enumerate(news_lists):
+        if idx == 10:
+            break
+        title_text.append(t.select(".news_tit")[0].text)
+        link_text.append(t.select(".news_tit")[0]["href"])
+        contents_text.append(t.select(".dsc_txt_wrap")[0].text)
+        source_text.append(t.select(".info_group")[0].select(".press")[0].text)
+        date_text.append(t.select(".info_group")[0].select("span")[1].text)
         if t.select(".thumb.api_get"):
             img_lists.append(t.select(".thumb.api_get")[0]["src"])
         else:
