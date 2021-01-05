@@ -14,7 +14,7 @@ def crawler(request, query):
     source_text = []
     date_text = []
     contents_text = []
-    img_source = []
+    img_lists = []
     result = {}
 
     url = "https://search.naver.com/search.naver?where=news&query=" + query
@@ -48,22 +48,25 @@ def crawler(request, query):
         contents_text.append(contents_list.text)
 
     # # 이미지 선택
-    img_lists = soup.select(".thumb.api_get")
-    for img_list in img_lists:
-        img_source.append(img_list["src"]) #이미지 주소
 
+    news_lists = soup.select("li.bx")
+    for t in news_lists:
+        if t.select(".thumb.api_get"):
+            img_lists.append(t.select(".thumb.api_get")[0]["src"])
+        else:
+            img_lists.append("http://placehold.it/293x180")
 
     # 모든 리스트 딕셔너리형태로 저장
     temp = []
     for i in range(10):
         result = {
-            "id" : i,
+            "id": i,
             "date": date_text[i],
             "title": title_text[i],
             "source": source_text[i],
             "contents": contents_text[i],
             "link": link_text[i],
-            "img_source" : img_source[i],
+            "img_source": img_lists[i],
         }
         temp.append(result)
     # page += 10
