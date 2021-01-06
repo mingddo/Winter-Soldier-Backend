@@ -135,13 +135,11 @@ def group_todo_list(request, group_pk):
             t_dict["schedule_min"] = t.schedule_min
             t_dict["group_id"] = t.group_id
             t_dict["user_id"] = t.user_id
-            print(t.schedule_year, '년', t.schedule_month, '월', t.schedule_date, '일')
             if len(str(t.schedule_month)) < 2:
                 t.schedule_month = "0" + str(str(t.schedule_month))
             if len(str(t.schedule_date)) < 2:
                 t.schedule_date = "0" + str(str(t.schedule_date))
             date = str(t.schedule_year) + t.schedule_month + t.schedule_date
-            print('날짜', date)
             if date in todolist:
 
                 todolist[date].append(t_dict)
