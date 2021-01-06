@@ -121,10 +121,8 @@ def group_todo_list(request, group_pk):
         return Response({'error': '권한이 없습니다.'}) 
     if request.method == 'GET':
         todos = GroupTodo.objects.all().filter(group=group_pk)
-
         context = {}
         todolist = {}
-
         for t in todos:
             t_dict = {}
             t_dict["id"] = t.id
@@ -137,12 +135,11 @@ def group_todo_list(request, group_pk):
             t_dict["schedule_min"] = t.schedule_min
             t_dict["group_id"] = t.group_id
             t_dict["user_id"] = t.user_id
-
-            if len(t.schedule_month) < 2:
-                string_month = "0" + str(str(t.schedule_month))
-            if len(t.schedule_date) < 2:
-                string_date = "0" + str(str(t.schedule_date))
-            date = str(t.schedule_year) + string_month + string_date
+            if len(str(t.schedule_month)) < 2:
+                t.schedule_month = "0" + str(str(t.schedule_month))
+            if len(str(t.schedule_date)) < 2:
+                t.schedule_date = "0" + str(str(t.schedule_date))
+            date = str(t.schedule_year) + t.schedule_month + t.schedule_date
             if date in todolist:
 
                 todolist[date].append(t_dict)
@@ -151,6 +148,7 @@ def group_todo_list(request, group_pk):
                 t_l = []
                 t_l.append(t_dict)
                 todolist[date] = t_l
+
         context["todolist"] = todolist
 
         return Response(context)
