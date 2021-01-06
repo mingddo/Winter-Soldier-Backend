@@ -151,7 +151,7 @@ STATIC_URL = "/static/"
 # custom user 등록
 AUTH_USER_MODEL = "accounts.User"
 
-ALLOWED_HOSTS = ["https://optimistic-swirles-b97b6b.netlify.app/"]
+ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
 
 import datetime
