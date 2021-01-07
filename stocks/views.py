@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from bs4 import BeautifulSoup
 import requests
 import json
 import xmltodict
@@ -10,61 +11,37 @@ import pandas as pd
 
 @api_view(["GET"])
 def stocks(request, companycode, period):
-    # stock_code = pd.read_html(
-    #     "http://kind.krx.co.kr/corpgeneral/corpList.do?method=download", header=0
-    # )[0]
-
-    # stock_code.sort_values(["상장일"], ascending=True)
-    # stock_code = stock_code[["회사명", "종목코드"]]
-    # stock_code = stock_code.rename(columns={"회사명": "company", "종목코드": "code"})
-    # # 종목코드가 6자리이기 때문에 6자리를 맞춰주기 위해 설정해줌
-    # stock_code.code = stock_code.code.map("{:06d}".format)
-    # company = companyname
-    # code = stock_code[stock_code.company == company].code.values[0]  ## strip() : 공백제거
-    # print(code)
-
-    df = pd.DataFrame()
-    for page in range(1, period):
-        url = "http://finance.naver.com/item/sise_day.nhn?code={companycode}".format(
-            companycode=companycode
-        )
-        url = "{url}&page={page}".format(url=url, page=page)
-        print(url)
-        # print(pd.read_html(url, header=0)[0])
-        df = df.append(pd.read_html(url, header=0)[0], ignore_index=True)
-
-    # df.dropna()를 이용해 결측값 있는 행 제거
-    df = df.dropna()
-    df = df.rename(
-        columns={
-            "날짜": "date",
-            "종가": "close",
-            "전일비": "diff",
-            "시가": "open",
-            "고가": "high",
-            "저가": "low",
-            "거래량": "volume",
-        }
+    date = []
+    price = []
+    volume = []
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36"
+    }
+    # for page in range(1, period):
+    url = "http://finance.naver.com/item/sise_day.nhn?code={companycode}".format(
+        companycode=companycode
     )
-    # 데이터의 타입을 int형으로 바꿔줌
-    df[["close", "diff", "open", "high", "low", "volume"]] = df[
-        ["close", "diff", "open", "high", "low", "volume"]
-    ].astype(int)
-    # 컬럼명 'date'의 타입을 date로 바꿔줌
-    df["date"] = pd.to_datetime(df["date"])
-    # 일자(date)를 기준으로 오름차순 정렬
-    df = df.sort_values(by=["date"])
-    df["date"] = df["date"].dt.strftime("%m/%d")
+    url = "{url}&page={page}".format(url=url, page=1)
 
-    df_date = df["date"].tolist()
-    df_price = df["close"].tolist()
-    df_open = df["open"].tolist()
-    df_high = df["high"].tolist()
-    df_low = df["low"].tolist()
-    df_volume = df["volume"].tolist()
+    response = requests.get(url, headers=headers)
+    html = response.text
+    soup = BeautifulSoup(html, "html.parser")
+    for t in soup.select(".tah.p10"):
+        date.append(t.text[5:])
+
+    temp = []
+    for tt in soup.select(".tah.p11"):
+        # print(tt.text)
+        temp.append(tt.text)
+    print(temp)
+
+    for i in range(10):
+        price.append(temp[6 * i])
+        volume.append(temp[6 * i + 5])
+
     context = {
-        "date": df_date,
-        "price": df_price,
-        "volume": df_volume,
+        "date": date,
+        "price": price,
+        "volume": volume,
     }
     return Response(context)

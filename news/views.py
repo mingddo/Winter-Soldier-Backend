@@ -3,8 +3,6 @@ from rest_framework.response import Response
 from bs4 import BeautifulSoup
 from datetime import datetime
 import requests
-import pandas as pd
-import re
 
 
 @api_view(["GET"])
