@@ -150,9 +150,11 @@ STATIC_URL = "/static/"
 
 # custom user 등록
 AUTH_USER_MODEL = "accounts.User"
-
+ACCESS_CONTROL_ALLOW_ORIGIN = '*'
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_ORIGINS_ALL = True
 ALLOWED_HOSTS = ["*"]
-CORS_ALLOW_ALL_ORIGINS = True
 
 import datetime
 
